@@ -112,7 +112,9 @@ public class ParkCollectorLoginAction extends Action{
 		}
 		//http://127.0.0.1/zld/collectorlogin.do?username=1000005&password=123456
 		//http://127.0.0.1/zld/collectorlogin.do?username=10700&password=123456&out=json
-		Map limitmap = daService.getMap("select * from sync_time_tb where id = ?", new Object[]{4});//id为4的时候的maxid
+		Map<String, Object> limitmap = daService.getMap("select * from sync_time_tb where id = ?", new Object[]{4});//id为4的时候的maxid
+		limitmap = new HashMap<String, Object>();
+		limitmap.put("maxid", 1635533963);//for test
 		int workret = 0;
 		if(limitmap!=null&&limitmap.get("maxid")!=null){
 			try {
@@ -123,7 +125,7 @@ public class ParkCollectorLoginAction extends Action{
 					String pass =RequestUtil.processParams(request, "password");
 					String version = RequestUtil.getString(request, "version");
 					logger.info("user:"+username+",pass:"+pass);
-					String sql = "select * from user_info_tb where id=? and md5pass=?";// and auth_flag=?";
+					String sql = "select * from user_info_tb where strid=? and md5pass=?";// and auth_flag=?";
 					if(pass.length()<32){
 						//md5密码 ，生成规则：原密码md5后，加上'zldtingchebao201410092009'再次md5
 						pass =StringUtils.MD5(pass);
@@ -134,7 +136,7 @@ public class ParkCollectorLoginAction extends Action{
 						AjaxUtil.ajaxOutput(response, StringUtils.createXML(infoMap));
 						return null;
 					}
-					Map user = daService.getPojo(sql, new Object[]{Long.valueOf(username),pass});//,ZLDType.ZLD_COLLECTOR_ROLE});
+					Map user = daService.getPojo(sql, new Object[]{username,pass});//,ZLDType.ZLD_COLLECTOR_ROLE});
 					//logger.info(user);
 					if(user==null){
 						infoMap.put("info", "用户名或密码错误");
