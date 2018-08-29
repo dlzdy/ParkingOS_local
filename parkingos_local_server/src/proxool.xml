@@ -3,11 +3,11 @@
   
   <proxool>
 		<alias>dbconfig</alias>
-		<driver-url>jdbc:postgresql://localhost:54320/zldetc</driver-url>
+		<driver-url>jdbc:postgresql://localhost:5432/zldetc</driver-url>
 		<driver-class>org.postgresql.Driver</driver-class>
 		<driver-properties>
 			<property name="user" value="postgres" />
-			<property name="password" value="tracq123" />
+			<property name="password" value="123456" />
 		</driver-properties>
 		<maximum-connection-count>600</maximum-connection-count>
 		<minimum-connection-count>20</minimum-connection-count>
@@ -18,11 +18,11 @@
 	</proxool>
  	<proxool>
 		<alias>onlyread</alias>
-		<driver-url>jdbc:postgresql://localhost:54320/zldetc</driver-url>
+		<driver-url>jdbc:postgresql://localhost:5432/zldetc</driver-url>
 		<driver-class>org.postgresql.Driver</driver-class>
 		<driver-properties>
 			<property name="user" value="postgres" />
-			<property name="password" value="tracq123" />
+			<property name="password" value="123456" />
 		</driver-properties>
 		<maximum-connection-count>200</maximum-connection-count>
 		<minimum-connection-count>20</minimum-connection-count>

@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project-modules id="moduleCoreId" project-version="1.5.0">
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="zldlocal">
-        <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/zldlocal/WebRoot/WEB-INF/classes"/>
+        <wb-resource deploy-path="/" source-path="/WebContent"/>
+        <property name="java-output-path" value="/zldlocal/WebContent/WEB-INF/classes"/>
         <property name="context-root" value="/zld"/>
     </wb-module>
 </project-modules>
