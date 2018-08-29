@@ -26,8 +26,8 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
+//import com.handmark.pulltorefresh.library.PullToRefreshBase;
+//import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zld.R;
 import com.zld.adapter.CurrentOrderAdapter;
 import com.zld.bean.AllOrder;
@@ -79,7 +79,7 @@ public class OrderListFragment extends BaseFragment implements OnClickListener {
 	private boolean isShowFirstItem;
 	private CurrentOrderAdapter adapter;
 	public  OrderListState orderListState;
-	private PullToRefreshListView lv_current_order;
+//	private PullToRefreshListView lv_current_order;
 	private RadioButton[] rbs = new RadioButton[2];
 	private int listFlag = 0;//listview 显示的是在场还是离场的标记
 	//自动搜索的车牌号，记录下来的原因是如果匹配不上还要匹配中间的五位字符
@@ -107,7 +107,7 @@ public class OrderListFragment extends BaseFragment implements OnClickListener {
 			Bundle savedInstanceState) {
 		mainView = inflater.inflate(
 				R.layout.pulltorefreshlistview, container,false);
-		initView();
+//		initView();
 		registerBr();
 		initComid();
 		return mainView;
@@ -138,66 +138,66 @@ public class OrderListFragment extends BaseFragment implements OnClickListener {
 		super.onActivityCreated(savedInstanceState); 
 	}
 
-	private void initView() {
-		rbs[0] = (RadioButton) mainView.findViewById(R.id.in_park_cars);
-		rbs[1] = (RadioButton) mainView.findViewById(R.id.out_park_cars);
-		for (int i = 0; i < rbs.length; i++) {
-			rbs[i].setTag(i);
-			rbs[i].setOnClickListener(this);
-		}
-		orderListState = OrderListState.getInstance();
-		adapter = new CurrentOrderAdapter(getActivity(), null);
-		lv_current_order = (PullToRefreshListView) mainView
-				.findViewById(R.id.pulltorefreshListView);
-		lv_current_order.setMode(PullToRefreshBase.Mode.BOTH);
-		lv_current_order.setAdapter(adapter);
-		lv_current_order.setOnRefreshListener(
-				new PullToRefreshBase.OnRefreshListener2<ListView>() {
-					@Override
-					public void onPullDownToRefresh(
-							PullToRefreshBase<ListView> refreshView) {
-						if (listFlag == 0){
-							/*手动刷新,切换播报月卡用户状态,出口来车后,手动刷新不播报*/
-							activity.setDetailInCarState(ComeInCarState.MANUAL_REFRESH_ORDER_LIST);
-							getOrderInPark(true);
-						}else if (listFlag == 1){
-							getHistoryOrder(true);
-						}
-					}
-
-					@Override
-					public void onPullUpToRefresh(
-							PullToRefreshBase<ListView> refreshView) {
-						if (listFlag == 0){
-							getOrderInPark(false);
-						}else if (listFlag == 1){
-							getHistoryOrder(false);
-						}
-					}
-				});
-		lv_current_order.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-				if(position == 0){
-					activity.showToast("请刷新列表");
-					return;
-				}
-				itemOrder = adapter.getAllOrders(position);
-				adapter.highLightSelectedItem(position);
-				Log.e("OrderListState", "当前状态为："+orderListState.getState());
-				if(OrderListState.getInstance().isParkOutState()){
-					setOrderDetails();
-				}else{
-					if(itemOrder != null){
-						clearOrthersFragment();
-						cashOrder(0,itemOrder.getId(),itemOrder.getLocalid());
-					}else{
-						activity.showToast("请刷新列表");
-					}
-				}
-			}
-		});
-	}
+//	private void initView() {
+//		rbs[0] = (RadioButton) mainView.findViewById(R.id.in_park_cars);
+//		rbs[1] = (RadioButton) mainView.findViewById(R.id.out_park_cars);
+//		for (int i = 0; i < rbs.length; i++) {
+//			rbs[i].setTag(i);
+//			rbs[i].setOnClickListener(this);
+//		}
+//		orderListState = OrderListState.getInstance();
+//		adapter = new CurrentOrderAdapter(getActivity(), null);
+//		lv_current_order = (PullToRefreshListView) mainView
+//				.findViewById(R.id.pulltorefreshListView);
+//		lv_current_order.setMode(PullToRefreshBase.Mode.BOTH);
+//		lv_current_order.setAdapter(adapter);
+//		lv_current_order.setOnRefreshListener(
+//				new PullToRefreshBase.OnRefreshListener2<ListView>() {
+//					@Override
+//					public void onPullDownToRefresh(
+//							PullToRefreshBase<ListView> refreshView) {
+//						if (listFlag == 0){
+//							/*手动刷新,切换播报月卡用户状态,出口来车后,手动刷新不播报*/
+//							activity.setDetailInCarState(ComeInCarState.MANUAL_REFRESH_ORDER_LIST);
+//							getOrderInPark(true);
+//						}else if (listFlag == 1){
+//							getHistoryOrder(true);
+//						}
+//					}
+//
+//					@Override
+//					public void onPullUpToRefresh(
+//							PullToRefreshBase<ListView> refreshView) {
+//						if (listFlag == 0){
+//							getOrderInPark(false);
+//						}else if (listFlag == 1){
+//							getHistoryOrder(false);
+//						}
+//					}
+//				});
+//		lv_current_order.setOnItemClickListener(new OnItemClickListener() {
+//			@Override
+//			public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+//				if(position == 0){
+//					activity.showToast("请刷新列表");
+//					return;
+//				}
+//				itemOrder = adapter.getAllOrders(position);
+//				adapter.highLightSelectedItem(position);
+//				Log.e("OrderListState", "当前状态为："+orderListState.getState());
+//				if(OrderListState.getInstance().isParkOutState()){
+//					setOrderDetails();
+//				}else{
+//					if(itemOrder != null){
+//						clearOrthersFragment();
+//						cashOrder(0,itemOrder.getId(),itemOrder.getLocalid());
+//					}else{
+//						activity.showToast("请刷新列表");
+//					}
+//				}
+//			}
+//		});
+//	}
 
 	public AllOrder getItemOrder() {
 		return itemOrder;
@@ -862,7 +862,7 @@ public class OrderListFragment extends BaseFragment implements OnClickListener {
 	 * @param object
 	 */
 	private void doGetOrdersResult(String object) {
-		lv_current_order.onRefreshComplete();
+//		lv_current_order.onRefreshComplete();
 		if (object.length() > 30) {
 			Gson gson = new Gson();
 			orders = gson.fromJson(object, CurrentOrder.class);
