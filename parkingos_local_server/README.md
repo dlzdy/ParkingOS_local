@@ -1,3 +1,15 @@
 # ParkingOS_cloud
 <h1>收费员app-后台系统</h1></br>
 提供组织结构管理、账户管理、价格设置、月卡套餐、车型管理、订单查询、统计分析等等。
+
+ParkingOS_local
+http://localhost:8082/zld/dologin.do
+admin/123456  只有密码
+
+user_info_tb
+jhon/123456  菜单多
+
+
+sysset.jsp
+二维码管理
+http://localhost:8080/zld/qrmanage.do
